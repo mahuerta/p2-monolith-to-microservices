@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: library-monolith
+  name: library-monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: library-monolith
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: library-monolith
+    spec:
+      containers:
+      - name: library-monolith
+        image: juablazmahuerta/library-monolith:0.0.1
+        env:
+        - name: DATABASE_HOST
+          value: library-monolith-db
+        - name: DATABASE_PORT
+          value: "3306"
+        - name: MYSQL_ROOT_PASSWORD
+          value: pass
+        - name: DATABASE_SCHEMA
+          value: library-monolith-db
+        - name: DATABASE_PASS
+          value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: library-monolith
+  labels:
+    app: library-monolith
+spec:
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: library-monolith
+  type: LoadBalancer

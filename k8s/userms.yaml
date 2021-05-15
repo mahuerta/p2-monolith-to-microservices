@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: userms
+  name: userms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userms
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: userms
+    spec:
+      containers:
+      - name: userms
+        image: juablazmahuerta/userms:0.0.1
+        env:
+        - name: MONOLITH_URL
+          value: http://library-monolith:8080
+        - name: DATABASE_HOST
+          value: userms-db
+        - name: DATABASE_PORT
+          value: "3307"
+        - name: MYSQL_ROOT_PASSWORD
+          value: pass
+        - name: DATABASE_SCHEMA
+          value: userms-db
+        - name: DATABASE_PASS
+          value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: userms
+  name: userms
+spec:
+  ports:
+  - protocol: TCP
+    port: 8090
+    targetPort: 8090
+  selector:
+    app: userms
+  type: ClusterIP
