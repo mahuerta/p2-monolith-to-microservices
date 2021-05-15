@@ -80,11 +80,6 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserResponseDto.class);
     }
 
-    @Override
-    public Collection<CommentResponseDto> getUserComments(long userId) {
-        return this.getComments(userId);
-    }
-
     private List<CommentResponseDto> getComments(long userId) {
         ResponseEntity<List<CommentResponseDto>> responseEntity =
                 restTemplate.exchange(

@@ -104,15 +104,4 @@ public class UserController {
         return this.userService.delete(userId);
     }
 
-    @Operation(summary = "Get all user's comments")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found all user's comments",
-                    content = {@Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = CommentResponseDto.class)))})})
-    @GetMapping("/{userId}/comments")
-    public Collection<CommentResponseDto> getUserComments(@Parameter(description = "id of user to get comments")
-                                                              @PathVariable long userId) {
-        return this.userService.getUserComments(userId);
-    }
-
 }

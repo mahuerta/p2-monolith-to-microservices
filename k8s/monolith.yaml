@@ -20,6 +20,8 @@ spec:
       - name: library-monolith
         image: juablazmahuerta/library-monolith:0.0.1
         env:
+        - name: USE_USER-MS
+          value: "true"
         - name: DATABASE_HOST
           value: library-monolith-db
         - name: DATABASE_PORT

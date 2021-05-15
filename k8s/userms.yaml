@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: userms
-        image: juablazmahuerta/userms:0.0.1
+        image: juablazmahuerta/user-ms:0.0.1
         env:
         - name: MONOLITH_URL
           value: http://library-monolith:8080
