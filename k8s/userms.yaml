@@ -24,14 +24,14 @@ spec:
           value: http://library-monolith:8080
         - name: DATABASE_HOST
           value: userms-db
-        - name: DATABASE_PORT
-          value: "3307"
-        - name: MYSQL_ROOT_PASSWORD
-          value: pass
         - name: DATABASE_SCHEMA
           value: library-db
+        - name: DATABASE_USER
+          value: root
         - name: DATABASE_PASS
           value: password
+        - name: DATABASE_PORT
+          value: "3307"
 ---
 apiVersion: v1
 kind: Service

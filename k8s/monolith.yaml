@@ -20,18 +20,20 @@ spec:
       - name: library-monolith
         image: juablazmahuerta/library-monolith:0.0.1
         env:
+        - name: USER-MS_URL
+          value: http://userms:8090
         - name: USE_USER-MS
           value: "false"
         - name: DATABASE_HOST
           value: monolith-db
-        - name: DATABASE_PORT
-          value: "3306"
-        - name: MYSQL_ROOT_PASSWORD
-          value: pass
         - name: DATABASE_SCHEMA
           value: library-db
+        - name: DATABASE_USER
+          value: root
         - name: DATABASE_PASS
           value: password
+        - name: DATABASE_PORT
+          value: "3306"
 ---
 apiVersion: v1
 kind: Service
