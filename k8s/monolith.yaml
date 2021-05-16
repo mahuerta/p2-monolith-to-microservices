@@ -21,15 +21,15 @@ spec:
         image: juablazmahuerta/library-monolith:0.0.1
         env:
         - name: USE_USER-MS
-          value: "true"
+          value: "false"
         - name: DATABASE_HOST
-          value: library-monolith-db
+          value: monolith-db
         - name: DATABASE_PORT
           value: "3306"
         - name: MYSQL_ROOT_PASSWORD
           value: pass
         - name: DATABASE_SCHEMA
-          value: library-monolith-db
+          value: library-db
         - name: DATABASE_PASS
           value: password
 ---

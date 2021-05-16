@@ -29,7 +29,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: pass
         - name: DATABASE_SCHEMA
-          value: userms-db
+          value: library-db
         - name: DATABASE_PASS
           value: password
 ---
