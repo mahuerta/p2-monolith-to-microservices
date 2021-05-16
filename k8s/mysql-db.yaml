@@ -18,8 +18,8 @@ spec:
         name: mysql
         command: ["/bin/sh", "-c"]
         args:
-        - echo "CREATE DATABASE IF NOT EXISTS monolith-db;" >> /docker-entrypoint-initdb.d/init.sql;
-          echo "CREATE DATABASE IF NOT EXISTS userms-db;" >> /docker-entrypoint-initdb.d/init.sql;
+        - echo "CREATE DATABASE IF NOT EXISTS monolith_db;" >> /docker-entrypoint-initdb.d/init.sql;
+          echo "CREATE DATABASE IF NOT EXISTS userms_db;" >> /docker-entrypoint-initdb.d/init.sql;
           /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         env:
         - name: MYSQL_ROOT_PASSWORD
