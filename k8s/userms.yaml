@@ -23,9 +23,9 @@ spec:
         - name: MONOLITH_URL
           value: http://library-monolith:8080
         - name: DATABASE_HOST
-          value: userms-db
+          value: mysql-db
         - name: DATABASE_SCHEMA
-          value: library-db
+          value: userms-db
         - name: DATABASE_USER
           value: root
         - name: DATABASE_PASS

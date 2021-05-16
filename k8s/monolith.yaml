@@ -25,9 +25,9 @@ spec:
         - name: USE_USER-MS
           value: "true"
         - name: DATABASE_HOST
-          value: monolith-db
+          value: mysql-db
         - name: DATABASE_SCHEMA
-          value: library-db
+          value: monolith-db
         - name: DATABASE_USER
           value: root
         - name: DATABASE_PASS
