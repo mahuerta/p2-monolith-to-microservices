@@ -12,5 +12,5 @@ function exec(serviceName, command){
   });
 }
 
-exec('Practica2_Java_v2', 'mvn install -DskipTests');
+exec('Practica2_Java_v2','mvn install -DskipTests');
 exec('user-ms', 'mvn install -DskipTests');
