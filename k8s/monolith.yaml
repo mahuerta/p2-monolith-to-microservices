@@ -48,4 +48,4 @@ spec:
     targetPort: 8080
   selector:
     app: library-monolith
-  type: NodePort
+  type: ClusterIP
