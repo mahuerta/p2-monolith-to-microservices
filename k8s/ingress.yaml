@@ -12,19 +12,25 @@ spec:
     http:
       paths:
       - path: /books(.*)
+        pathType: ImplementationSpecific
         backend:
-          serviceName: library-monolith
-          servicePort: 8080
+          service:
+              name: library-monolith
+              port:
+                number: 8080
+
       - path: /users/^\d+$/comments
+        pathType: ImplementationSpecific
         backend:
-          serviceName: library-monolith
-          servicePort: 8080
+          service:
+              name: library-monolith
+              port:
+                number: 8080
       - path: /users(.*)
+        pathType: ImplementationSpecific
         backend:
-          serviceName: userms
-          servicePort: 8090
-#      - path: /(.*)
-#        backend:
-#          serviceName: library-monolith
-#          servicePort: 8080
+          service:
+              name: userms
+              port:
+                number: 8090
 
