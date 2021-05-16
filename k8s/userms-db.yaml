@@ -22,7 +22,7 @@ spec:
         - name: MYSQL_DATABASE
           value: library-db
         ports:
-        - containerPort: 3307
+        - containerPort: 3306
           name: mysql
 ---
 apiVersion: v1
@@ -34,4 +34,4 @@ spec:
   selector:
     app: userms-db
   ports:
-  - port: 3307
+  - port: 3306
