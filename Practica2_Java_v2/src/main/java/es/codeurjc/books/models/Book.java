@@ -1,23 +1,10 @@
 package es.codeurjc.books.models;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 @Entity
@@ -32,21 +19,21 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false)
     private String title;
-    
+
     private String summary;
-    
+
     @Column(nullable = false)
     private String author;
-    
+
     @Column(nullable = false)
     private String publisher;
-    
+
     @Column(name = "publication_year", nullable = false)
     private int publicationYear;
-    
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
     private Collection<Comment> comments = Collections.emptyList();
 

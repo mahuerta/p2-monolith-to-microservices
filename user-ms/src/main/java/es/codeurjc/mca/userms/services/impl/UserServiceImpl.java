@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Value(value = "${monolith.url}")
     private String monolithBaseUri;
@@ -80,13 +80,20 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserResponseDto.class);
     }
 
+    @Override
+    public UserResponseDto findByNick(String nick) {
+        User user = this.userRepository.findByNick(nick).orElseThrow(UserNotFoundException::new);
+        return this.modelMapper.map(user, UserResponseDto.class);
+    }
+
     private List<CommentResponseDto> getComments(long userId) {
         ResponseEntity<List<CommentResponseDto>> responseEntity =
                 restTemplate.exchange(
-                        monolithBaseUri + "api/v1/users/" + userId,
+                        monolithBaseUri + "api/v1/users/" + userId + "/comments",
                         HttpMethod.GET,
                         null,
-                        new ParameterizedTypeReference<>() {}
+                        new ParameterizedTypeReference<>() {
+                        }
                 );
         List<CommentResponseDto> commentResponseDtos = responseEntity.getBody();
         return commentResponseDtos.stream()

@@ -1,10 +1,10 @@
 package es.codeurjc.mca.userms.services;
 
-import java.util.Collection;
-
 import es.codeurjc.mca.userms.dtos.requests.UpdateUserEmailRequestDto;
 import es.codeurjc.mca.userms.dtos.requests.UserRequestDto;
 import es.codeurjc.mca.userms.dtos.responses.UserResponseDto;
+
+import java.util.Collection;
 
 public interface UserService {
 
@@ -18,4 +18,5 @@ public interface UserService {
 
     UserResponseDto delete(long userId);
 
+    UserResponseDto findByNick(String nick);
 }

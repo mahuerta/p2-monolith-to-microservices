@@ -2,7 +2,6 @@ package es.codeurjc.mca.userms.controllers;
 
 import es.codeurjc.mca.userms.dtos.requests.UpdateUserEmailRequestDto;
 import es.codeurjc.mca.userms.dtos.requests.UserRequestDto;
-import es.codeurjc.mca.userms.dtos.responses.CommentResponseDto;
 import es.codeurjc.mca.userms.dtos.responses.UserResponseDto;
 import es.codeurjc.mca.userms.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +20,7 @@ import java.util.Collection;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -102,6 +101,22 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public UserResponseDto deleteUser(@Parameter(description = "id of user to be deleted") @PathVariable long userId) {
         return this.userService.delete(userId);
+    }
+
+
+    @Operation(summary = "Get a user by its nick")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the user",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponseDto.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid format id supplied",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content)})
+    @GetMapping("")
+    public UserResponseDto getUser(@Parameter(description = "nick of user to be searched")
+                                   @RequestParam String nick) {
+        return this.userService.findByNick(nick);
     }
 
 }
