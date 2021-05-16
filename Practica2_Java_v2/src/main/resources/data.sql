@@ -11,7 +11,7 @@ INSERT INTO users (email, nick)
 VALUES ('user2@email.es', 'user2');
 
 -- saving comments
-INSERT INTO comments (comment, score, book_id, user_id )
+INSERT INTO comments (comment, score, book_id, user_id)
 VALUES ("Book 2 comment 1", 3, 2, 1);
 INSERT INTO comments (comment, score, book_id, user_id)
 VALUES ("Book 2 comment 2", 4, 2, 1);

@@ -23,7 +23,7 @@ spec:
         - name: USER-MS_URL
           value: http://userms:8090
         - name: USE_USER-MS
-          value: "false"
+          value: "true"
         - name: DATABASE_HOST
           value: monolith-db
         - name: DATABASE_SCHEMA
