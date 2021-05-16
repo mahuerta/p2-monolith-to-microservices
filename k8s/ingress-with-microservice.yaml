@@ -4,17 +4,16 @@ metadata:
   name: library-monolith
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+
 spec:  
   rules:
-  - host: library.com
+  - host: www.library.com
     http:
       paths:
-      - path: /books
+      - path: /(.*)
         backend:
           serviceName: library-monolith
           servicePort: 8080
-      - path: /users
-        backend:
-          serviceName: userms
-          servicePort: 8090
+
 

@@ -25,9 +25,6 @@ public class Comment {
     @ManyToOne
     private Book book;
 
-    @ManyToOne
-    private User user;
-
-    @Column(name = "user_ms_id")
-    private Long userMSId;
+    @Column(name = "user_id")
+    private Long userId;
 }

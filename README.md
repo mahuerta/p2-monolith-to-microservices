@@ -26,22 +26,40 @@ Proyecto para migrar una aplicación monolítica a microservicios.
 # Sobre la ejecución de la aplicación
 
 
-
-
 Generación de los jars:
 > node install.js
 
 Publicación de las imágenes (Están los Dockerfiles):
 > sh publish-docker-images.sh
 
-
 Está preparada la parte de k8s aunque sin probar (Sólo la idea de la estructura de los archivos necesarios)
-
 
 Para probar en local (tarda un montón en arrancar las BBDD):
 > docker run -p 3306:3306 --name library-monolith-db -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=test -e -d mysql:latest
 
 > docker run -p 3307:3306 --name userms-db -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=test -e -d mysql:latest
+
+
+
+
+
+
+Configuración de minikube con ingress con host:
+> minikube start --network-plugin=cni --memory=4096 --driver=virtualbox
+
+> export MINIKUBE_IP=$(minikube ip)
+
+> echo $MINIKUBE_IP www.cluster-ip.com | sudo tee --append /etc/hosts >/dev/null
+
+> cat /etc/hosts
+
+> minikube addons enable ingress
+
+> kubectl apply -f ./k8s
+
+Acceso a las peticiones:
+http://www.library.com/
+
 
 
 TODO + INFO:
@@ -60,7 +78,8 @@ TODO + INFO:
 
 TODO:
 
-1. Hay añadida en el monolito una nueva columna en la base de datos para representar la relación usuario-comentario.
+1. (HECHO) Cambiado a no usar una FK.
+Hay añadida en el monolito una nueva columna en la base de datos para representar la relación usuario-comentario.
 Hay que cambiarla. En vez de tener en Comment:
 
     @ManyToOne
@@ -78,4 +97,6 @@ Deberíamos tener:
 Hay que cambiar el código para que funcione con eso y permita devolver la información del usuario (no vale con que devuelva siempre el id, hay que adaptarse a la solución ya existente)
 
 
-2. Problema: El router del (ingress) hay que configurarlo con alguna regla, ya no vale que las peticiones /users vayan al microservicio porque /users/{userId}/comments estará en el monolito.
+
+2. (PLANTEADO EL INGRESS) 
+Problema: El router del (ingress) hay que configurarlo con alguna regla, ya no vale que las peticiones /users vayan al microservicio porque /users/{userId}/comments estará en el monolito.

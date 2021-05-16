@@ -2,6 +2,7 @@ package es.codeurjc.books.services.impl;
 
 import es.codeurjc.books.dtos.requests.CommentRequestDto;
 import es.codeurjc.books.dtos.responses.CommentResponseDto;
+import es.codeurjc.books.dtos.responses.CommentUserResponseDto;
 import es.codeurjc.books.dtos.responses.UserCommentResponseDto;
 import es.codeurjc.books.dtos.responses.UserResponseDto;
 import es.codeurjc.books.exceptions.BookNotFoundException;
@@ -44,26 +45,30 @@ public class CommentServiceImpl implements CommentService {
     public CommentResponseDto addComment(long bookId, CommentRequestDto commentRequestDto) {
         Book book = this.bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
         User user;
-        UserResponseDto userResponseDto = null;
+        CommentUserResponseDto commentUserResponseDto = new CommentUserResponseDto();
         Comment comment = this.mapper.map(commentRequestDto, Comment.class);
         comment.setBook(book);
 
         if (useUserService) {
-            userResponseDto = this.userMSService.getUserByNick(commentRequestDto.getUserNick());
+            UserResponseDto userResponseDto = this.userMSService.getUserByNick(commentRequestDto.getUserNick());
             if (userResponseDto == null) {
                 throw new UserNotFoundException();
             }
-            comment.setUserMSId(userResponseDto.getId());
+            comment.setUserId(userResponseDto.getId());
+            commentUserResponseDto.setNick(userResponseDto.getNick());
+            commentUserResponseDto.setEmail(userResponseDto.getEmail());
         } else {
             user = this.userRepository.findByNick(commentRequestDto.getUserNick()).orElseThrow(UserNotFoundException::new);
-            comment.setUser(user);
+            comment.setUserId(user.getId());
+            commentUserResponseDto.setEmail(user.getEmail());
+            commentUserResponseDto.setNick(user.getNick());
         }
         comment = this.commentRepository.save(comment);
 
-        if (comment.getUserMSId() != null) {
-            comment.setUser(this.mapper.map(userResponseDto, User.class));
-        }
-        return this.mapper.map(comment, CommentResponseDto.class);
+        CommentResponseDto commentResponseDto = this.mapper.map(comment, CommentResponseDto.class);
+        commentResponseDto.setUser(commentUserResponseDto);
+
+        return commentResponseDto;
     }
 
     public CommentResponseDto deleteComment(long bookId, long commentId) {
