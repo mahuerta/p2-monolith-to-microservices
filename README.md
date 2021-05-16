@@ -45,11 +45,11 @@ Para probar en local (tarda un montón en arrancar las BBDD):
 
 
 Configuración de minikube con ingress con host:
-> minikube start --network-plugin=cni --memory=4096 --driver=virtualbox
+> minikube start --network-plugin=cni --memory=8192 --driver=virtualbox
 
 > export MINIKUBE_IP=$(minikube ip)
 
-> echo $MINIKUBE_IP www.cluster-ip.com | sudo tee --append /etc/hosts >/dev/null
+> echo $MINIKUBE_IP www.split-the-monolith.com | sudo tee --append /etc/hosts >/dev/null
 
 > cat /etc/hosts
 

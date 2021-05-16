@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1  
+apiVersion: networking.k8s.io/v1
 kind: Ingress  
 metadata:  
   name: library-monolith
@@ -23,4 +23,8 @@ spec:
         backend:
           serviceName: userms
           servicePort: 8090
+#      - path: /(.*)
+#        backend:
+#          serviceName: library-monolith
+#          servicePort: 8080
 
