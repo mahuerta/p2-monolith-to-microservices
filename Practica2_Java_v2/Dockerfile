@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 USER root
 WORKDIR /
-COPY target/user-ms.jar /opt/
+COPY target/library-monolith.jar /opt/
 
 EXPOSE 8080
 

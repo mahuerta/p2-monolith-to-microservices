@@ -32,4 +32,5 @@ http://localhost:8080/swagger-ui.html
 
 * Github: [@amartinm82](https://github.com/amartinm82)
 
-Note that you should have to [install JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html), [Maven](https://maven.apache.org/install.html) and [Docker](https://docs.docker.com/engine/install/) as prerequisite.
+Note that you should have to [install JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+, [Maven](https://maven.apache.org/install.html) and [Docker](https://docs.docker.com/engine/install/) as prerequisite.

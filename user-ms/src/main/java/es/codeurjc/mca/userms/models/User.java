@@ -2,11 +2,8 @@ package es.codeurjc.mca.userms.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 @Table(name = "users")

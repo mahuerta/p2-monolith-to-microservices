@@ -23,6 +23,7 @@ echo 'library-monolith images published in dockerhub'
 echo ''
 
 # userms
+
 echo '  ******* '
 echo '* USER MS *'
 echo '  ******* '

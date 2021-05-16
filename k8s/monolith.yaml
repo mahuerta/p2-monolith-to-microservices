@@ -46,4 +46,4 @@ spec:
     targetPort: 8080
   selector:
     app: library-monolith
-  type: LoadBalancer
+  type: NodePort
