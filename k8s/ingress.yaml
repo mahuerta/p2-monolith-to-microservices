@@ -11,7 +11,7 @@ spec:
   - host: www.library.com
     http:
       paths:
-      - path: /books(.*)
+      - path: /api/v1
         pathType: ImplementationSpecific
         backend:
           service:
@@ -19,18 +19,17 @@ spec:
               port:
                 number: 8080
 
-      - path: /users/^\d+$/comments
+      - path: /api/v1/users/
         pathType: ImplementationSpecific
         backend:
           service:
               name: library-monolith
               port:
                 number: 8080
-      - path: /users(.*)
+      - path: /api/v1/users/.*/comments
         pathType: ImplementationSpecific
         backend:
           service:
               name: userms
               port:
                 number: 8090
-
