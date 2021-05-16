@@ -49,7 +49,7 @@ Configuración de minikube con ingress con host:
 
 > export MINIKUBE_IP=$(minikube ip)
 
-> echo $MINIKUBE_IP www.split-the-monolith.com | sudo tee --append /etc/hosts >/dev/null
+> echo $MINIKUBE_IP www.library.com | sudo tee --append /etc/hosts >/dev/null
 
 > cat /etc/hosts
 
