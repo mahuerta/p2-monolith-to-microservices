@@ -1,26 +1,29 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: monolith-db
+  name: mysql-db
 spec:
   selector:
     matchLabels:
-      app: monolith-db
+      app: mysql-db
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: monolith-db
+        app: mysql-db
     spec:
       containers:
       - image: mysql:5.7
         name: mysql
+        command: ["/bin/sh", "-c"]
+        args:
+        - echo "CREATE DATABASE IF NOT EXISTS monolith_db;" >> /docker-entrypoint-initdb.d/init.sql;
+          echo "CREATE DATABASE IF NOT EXISTS userms_db;" >> /docker-entrypoint-initdb.d/init.sql;
+          /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: password
-        - name: MYSQL_DATABASE
-          value: library-db
         ports:
         - containerPort: 3306
           name: mysql
@@ -28,10 +31,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: monolith-db
+  name: mysql-db
 spec:
   type: ClusterIP
   selector:
-    app: monolith-db
+    app: mysql-db
   ports:
   - port: 3306

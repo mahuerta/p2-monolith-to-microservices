@@ -23,11 +23,11 @@ spec:
         - name: USER-MS_URL
           value: http://userms:8090
         - name: USE_USER-MS
-          value: "false"
+          value: "true"
         - name: DATABASE_HOST
-          value: monolith-db
+          value: mysql-db
         - name: DATABASE_SCHEMA
-          value: library-db
+          value: monolith_db
         - name: DATABASE_USER
           value: root
         - name: DATABASE_PASS
@@ -48,4 +48,4 @@ spec:
     targetPort: 8080
   selector:
     app: library-monolith
-  type: NodePort
+  type: ClusterIP
