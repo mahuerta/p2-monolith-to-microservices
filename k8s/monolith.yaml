@@ -2,28 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: library-monolith
-  name: library-monolith
+    app: monolith
+  name: monolith
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: library-monolith
+      app: monolith
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: library-monolith
+        app: monolith
     spec:
       containers:
-      - name: library-monolith
+      - name: monolith
         image: juablazmahuerta/library-monolith:0.0.1
         env:
         - name: USER-MS_URL
           value: http://userms:8090
         - name: USE_USER-MS
-          value: "true"
+          value: "true" # Si true usaremos el microservicio de usuarios, si false no lo utilizaremos.
         - name: DATABASE_HOST
           value: mysql-db
         - name: DATABASE_SCHEMA
@@ -38,14 +38,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: library-monolith
+  name: monolith
   labels:
-    app: library-monolith
+    app: monolith
 spec:
   ports:
   - protocol: TCP
     port: 8080
     targetPort: 8080
   selector:
-    app: library-monolith
+    app: monolith
   type: ClusterIP

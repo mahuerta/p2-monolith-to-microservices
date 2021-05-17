@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress  
+metadata:  
+  name: library-monolith-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:  
+  rules:
+  - host: www.library.com
+    http:
+      paths:
+      - path: /(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+              name: monolith
+              port:
+                number: 8080
+      

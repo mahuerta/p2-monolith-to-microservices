@@ -21,7 +21,7 @@ spec:
         image: juablazmahuerta/user-ms:0.0.1
         env:
         - name: MONOLITH_URL
-          value: http://library-monolith:8080
+          value: http://monolith:8080
         - name: DATABASE_HOST
           value: mysql-db
         - name: DATABASE_SCHEMA
