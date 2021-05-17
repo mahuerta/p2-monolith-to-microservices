@@ -1,5 +1,3 @@
-# p2-monolith-to-microservices
-
 <h1 align="center">Practice 2. Monolith to Microservices 👨🏻‍💻 </h1>
 
 <p align="center">
