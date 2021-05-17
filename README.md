@@ -61,6 +61,30 @@ Acceso a las peticiones:
 http://www.library.com/
 
 
+## Run mysql
+
+```sh
+kubectl apply -f k8s/mysql-db.yaml
+```
+
+## Run monolith only
+Hay que asegurarse que la variable `USE_USER-MS` esta a `false` en el archivo monolith.yaml
+```sh
+kubectl apply -f k8s/ingress.yaml
+kubectl apply -f k8s/monolith.yaml
+```
+
+## Run monolith + user service
+Asegurarse que la variable `USE_USER-MS` esta a true en el archivo monolith.yaml
+```sh
+kubectl delete -f k8s/monolith.yaml
+kubectl apply -f k8s/ingress.yaml
+kubectl apply -f k8s/user-service.yaml
+kubectl apply -f k8s/monolith.yaml
+```
+
+
+
 
 TODO + INFO:
 - (HECHO) Hace falta que el microservicio de usuarios haga una petición al monolito para obtener los comentarios de un usuario (validación al borrar)
